@@ -19,5 +19,13 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boennemann/alle.git"
+  },
+  "devDependencies": {
+    "standard": "^7.1.2",
+    "tap": "^6.3.0"
+  },
+  "scripts": {
+    "pretest": "standard",
+    "test": "tap test/index.js"
   }
 }
