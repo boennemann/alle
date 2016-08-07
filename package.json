@@ -1,0 +1,23 @@
+{
+  "name": "alle-demo",
+  "description": "a demo project layout for monorepo publishing",
+  "version": "0.0.0",
+  "author": "Stephan Bönnemann <stephan@boennemann.me> (http://boennemann.me)",
+  "bugs": {
+    "url": "https://github.com/boennemann/alle/issues"
+  },
+  "dependencies": {
+    "lodash": "^4.14.1"
+  },
+  "homepage": "https://github.com/boennemann/alle#readme",
+  "keywords": [
+    "monorepo",
+    "publish"
+  ],
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boennemann/alle.git"
+  }
+}
