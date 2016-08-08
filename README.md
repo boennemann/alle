@@ -24,7 +24,7 @@ Instead of storing the individual packages in a "packages" folder they're stored
 
 It's a bit tedious that this requires an extra folder level, but this alone makes the entire linking step unnecessary. In the GitHub UI it's not even that bad, because it automatically points you right to the inner folder.
 
-Scoped packages need to be stored in "packages/node_modules/@<scope>/".
+Scoped packages need to be stored in "packages/node_modules/@\<scope\>/".
 
 ### define dependencies globally
 
@@ -44,6 +44,14 @@ Because the package.json is extended it is still possible to define additional p
 #### source code analysis to find dependencies
 
 The dependencies object is the only value that gets special treatment. The publishing tool analyzes the source code of the individual packages (starting at their entry point), looking for all require calls, or import statements. Every required/imported npm package that's from the same repository will be defined with the latest version (that might be about to be published). All others will be defined with the version that is found in the top-level package.json. If there are required packages that aren't in the top-level package.json the tool aborts the entire publishing process (4).
+
+#### alternative to find/define dependencies
+
+As the process described in the previous paragraph could lead to a rather complex first implementation and could feel rather _magic_, here is an alternative:
+
+The individual packages define their dependencies in the package.json only ever using a "\*". Before publishing these stars get overwritten by the latest version from the same repo, or the version found in the top-level package.json.
+
+This would not require source code analysis, but some duplicated entries in the package.json files. This could however be dangerous when the package contains a require call to a package that is not defined in its package.json. It would work inside the monorepo, but not after being published.
 
 ## why is this just a README?
 
