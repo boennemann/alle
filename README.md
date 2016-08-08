@@ -29,9 +29,9 @@ Scoped packages need to be stored in "packages/node_modules/@\<scope\>/".
 ### define dependencies globally
 
 Both dependencies and devDependencies are only ever defined in the top-level package.json file. `npm install` is only ever run on the top-level.
-As soon as a package wants to make use of an external dependencies it is added to the top-level pakage.json.
+As soon as a package wants to make use of an external dependencies it is added to the top-level package.json.
 
-The individual packages can still just require dependencies with a simple call, because requires traverses up to the top-level node_modules folder.
+The individual packages can still just require dependencies with a simple call, because require traverses up to the top-level node_modules folder.
 
 Packages can no longer depend on different versions of the same dependency (4). Updating a dependency that multiple packages depend on requires a single change (4). This makes it compatible with Greenkeeper again (3).
 
