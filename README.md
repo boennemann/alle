@@ -11,14 +11,14 @@ However: **This is dream code**, or README driven development, in where this rep
 ## the pain points
 
 1. linking packages is a separate step (that takes time)
-2. links are a hack `module.exports = require('./path/to/the-actual-thing')`
+2. links like `module.exports = require('./path/to/the-actual-thing')` have [side-effects](https://github.com/lerna/lerna/issues/11)
 3. incompatibility with [Greenkeeper](https://greenkeeper.io/)
 4. maintaining dependencies that more than one package depends on (see also 5)
 5. duplicated metadata in package.json
 
 ## possible solutions
 
-### make use of how `require` works
+### make use of how `node_modules` folders are treated by `require`
 
 Instead of storing the individual packages in a "packages" folder they're stored in a ["packages/node_modules"](packages/node_modules) folder. Because of the way the require algorithm treats a folder called "node_modules" everything inside it is now available with a simple require call from all others (1, 2).
 
@@ -35,7 +35,7 @@ The individual packages can still just require dependencies with a simple call, 
 
 Packages can no longer depend on different versions of the same dependency (4). Updating a dependency that multiple packages depend on requires a single change (4). This makes it compatible with Greenkeeper again (3).
 
-### write individual package.json content right before publishing
+### merge top-level package.json into individual package.json right before publishing
 
 The only values the package.json files of the individual packages need to have are "name" and "version".
 Right before publishing these files are extended with the top-level package.json removing any need to duplicate information such as author, homepage, bugs, repository etc (5).
@@ -45,7 +45,7 @@ Because the package.json is extended it is still possible to define additional p
 
 The dependencies object is the only value that gets special treatment. The publishing tool analyzes the source code of the individual packages (starting at their entry point), looking for all require calls, or import statements. Every required/imported npm package that's from the same repository will be defined with the latest version (that might be about to be published). All others will be defined with the version that is found in the top-level package.json. If there are required packages that aren't in the top-level package.json the tool aborts the entire publishing process (4).
 
-#### alternative to find/define dependencies
+#### cheap alternative to find/define dependencies
 
 As the process described in the previous paragraph could lead to a rather complex first implementation and could feel rather _magic_, here is an alternative:
 
