@@ -2,6 +2,8 @@
 
 > monorepo publishing
 
+_Update: [PouchDB's publishing process now implements all the ideas laid out in here](https://gist.github.com/nolanlawson/457cdb309c9ec5b39f0d420266a9faa4)._
+
 I've been discussing with @nolanlawson about the [PouchDB](https://pouchdb.com/) project moving to a monorepo architecture and the pain points they're having with it.
 
 This repository showcases a structure that addresses these problems.
