@@ -21,7 +21,7 @@
     "url": "git+https://github.com/boennemann/alle.git"
   },
   "devDependencies": {
-    "standard": "^8.5.0",
+    "standard": "^8.6.0",
     "tap": "^8.0.0"
   },
   "scripts": {
