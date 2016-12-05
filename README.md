@@ -17,6 +17,7 @@ However: **This is dream code**, or README driven development, in where this rep
 3. incompatibility with [Greenkeeper](https://greenkeeper.io/)
 4. maintaining dependencies that more than one package depends on (see also 5)
 5. duplicated metadata in package.json
+6. environments such as React Native cannot leave their root dir; even symlinks aren't an option [yet](https://github.com/facebook/react-native/pull/9176)
 
 ## possible solutions
 
